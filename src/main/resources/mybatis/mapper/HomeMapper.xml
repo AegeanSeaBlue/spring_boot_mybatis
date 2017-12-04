@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.HomeMapper">
+    <resultMap id="subway" type="com.example.demo.model.Home">
+        <result column="date" property="dateYMD" jdbcType="VARCHAR"></result>
+        <result column="line1" property="line1" jdbcType="FLOAT"></result>
+    </resultMap>
+
+    <select id="selectHome" resultMap="subway">
+        select line1, to_char("date",'yyyy-MM-dd') AS "date" from subway
+    </select>
+</mapper>
