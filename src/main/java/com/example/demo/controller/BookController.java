@@ -14,7 +14,7 @@ import java.util.Map;
  * Created by lei9 on 2017/12/2.
  */
 @RestController
-public class bookController {
+public class BookController {
     @Autowired
     BookService bookService;
 
