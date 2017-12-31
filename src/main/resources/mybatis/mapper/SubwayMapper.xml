@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.demo.mapper.BookMapper">
-    <resultMap id="book" type="java.util.HashMap">
-        <result column="book_store_id" property="bookStoreID" jdbcType="BIGINT"></result>
-        <result column="name" property="name" jdbcType="VARCHAR"></result>
-        <result column="author" property="author" jdbcType="VARCHAR"></result>
-        <result column="price" property="price" jdbcType="NUMERIC"></result>
-        <result column="topic" property="topic" jdbcType="VARCHAR"></result>
-        <result column="publish_date" property="publishDate" jdbcType="DATE"></result>
+<mapper namespace="com.example.demo.mapper.SubwayMapper">
+    <resultMap id="subway" type="java.util.HashMap">
+        <result column="id" property="id" jdbcType="INTEGER"></result>
+        <result column="line" property="line" jdbcType="VARCHAR"></result>
+        <result column="station" property="station" jdbcType="VARCHAR"></result>
+        <result column="transfer" property="transfer" jdbcType="ARRAY"></result>
     </resultMap>
 
-    <select id="selectBook" resultMap="book" parameterType="java.lang.String">
-        select "book_store_id","name","author","price","topic",
-        to_char("publish_date",'yyyy-MM-dd') AS "publish_date"
-        FROM book
-        WHERE "publish_date"=to_date(#{publishDate},'yyyy-MM-dd');
-    </select>
+    <insert id="addStations" parameterType="java.util.List">
+        DELETE FROM subway;
+        INSERT INTO subway (line, station,transfer)
+        VALUES
+        <foreach collection="list" item="item" separator="," index="index">
+            (#{item.line},#{item.station},#{item.transfer})
+        </foreach>;
+    </insert>
 </mapper>

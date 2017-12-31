@@ -9,5 +9,5 @@ import java.util.Map;
  */
 
 public interface SubwayMapper {
-    List<Map<String, Object>> selectStations();
+    Integer addStations(List stations);
 }

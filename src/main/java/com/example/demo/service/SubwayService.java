@@ -16,7 +16,7 @@ public class SubwayService {
     @Autowired
     SubwayMapper subwayMapper;
 
-    public List<Map<String, Object>> selectStations() {
-        return this.subwayMapper.selectStations();
+    public Integer addStations(List stations) {
+        return this.subwayMapper.addStations(stations);
     }
 }
